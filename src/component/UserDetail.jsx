@@ -7,22 +7,28 @@ import download from 'downloadjs';
 
 class UserDetail extends Component {
 
-  downloadFile = () =>{
+    componentWillReceiveProps(){
+      var nameProp = this.props.data.name;
+    }
 
-    // $.ajax({
-    //   url:'http://github.com/'+this.props.data.full_name+'/archive/master.zip', 
-		//   success: download.bind(true, "application/zip", this.props.data.name+".zip")
-    // })
-    
-    download('http://www.github.com/'+this.props.data.full_name+'/archive/master.zip');
+    downloadFile = () =>{
 
-    // var x=new XMLHttpRequest();
-    // x.open( "GET",'http://www.github.com/'+this.props.data.full_name+'/archive/master.zip', true);
-    // x.responseType="blob";
-    // console.log(this.props.data.name)
-    // x.onload= function(e){download(e.target.response, "master01.zip" , "application/octet-stream");};
-    // x.send();
-  }
+      // $.ajax({
+      //   url:'http://github.com/'+this.props.data.full_name+'/archive/master.zip', 
+      //   success: download.bind(true, "application/zip", this.props.data.name+".zip")
+      // })
+      
+      // download('http://www.github.com/'+this.props.data.full_name+'/archive/master.zip');
+  
+      var x=new XMLHttpRequest();
+      x.open( "GET",'http://www.github.com/'+this.props.data.full_name+'/archive/master.zip', true);
+      x.responseType="blob";
+      console.log(this.props.data.name)
+      x.onload= function(e){download(e.target.response, this.nameProp+"master.zip" , "application/octet-stream");};
+      x.send();
+    }
+
+  
 
   render() {
     //let downloadUrl = 'http://github.com/'+this.props.data.full_name+'/archive/master.zip';
@@ -33,23 +39,23 @@ class UserDetail extends Component {
             <td>{this.props.data.description}</td>
             <td>
               <Moment format="DD/MM/YYYY">
-              { 
-                this.props.data.created_at
-              }
+                { 
+                  this.props.data.created_at
+                }
               </Moment>
             </td>
             <td>
-            <Moment format="DD/MM/YYYY">
-              { 
-                this.props.data.updated_at
-              }
+              <Moment format="DD/MM/YYYY">
+                { 
+                  this.props.data.updated_at
+                }
               </Moment>
             </td>
             <td>
-            <Moment format="DD/MM/YYYY">
-              { 
-                this.props.data.pushed_at
-              }
+              <Moment format="DD/MM/YYYY">
+                { 
+                  this.props.data.pushed_at
+                }
               </Moment>
             </td>
             <td className="text-center">
