@@ -7,10 +7,6 @@ import download from 'downloadjs';
 
 class UserDetail extends Component {
 
-    componentWillReceiveProps(){
-      var nameProp = this.props.data.name;
-    }
-
     downloadFile = () =>{
 
       // $.ajax({
@@ -24,7 +20,7 @@ class UserDetail extends Component {
       x.open( "GET",'http://www.github.com/'+this.props.data.full_name+'/archive/master.zip', true);
       x.responseType="blob";
       console.log(this.props.data.name)
-      x.onload= function(e){download(e.target.response, this.nameProp+"master.zip" , "application/octet-stream");};
+      x.onload= function(e){download(e.target.response,"master.zip", "application/octet-stream");};
       x.send();
     }
 
