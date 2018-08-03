@@ -42,7 +42,6 @@ class App extends Component {
     }
 
     getImage = () =>{
-        console.log("aumentar");
         return(
             <div>
                 <UserImage userIMG={this.state.dataSet[0].owner.avatar_url}/>
