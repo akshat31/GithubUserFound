@@ -1,33 +1,22 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-//import FileDownload from 'js-file-download';
-//import $ from "jquery";
-import download from 'downloadjs';
 
 
 class UserDetail extends Component {
 
-    downloadFile = () =>{
-
-      // $.ajax({
-      //   url:'http://github.com/'+this.props.data.full_name+'/archive/master.zip', 
-      //   success: download.bind(true, "application/zip", this.props.data.name+".zip")
-      // })
-      
-      // download('http://www.github.com/'+this.props.data.full_name+'/archive/master.zip');
-  
-      var x=new XMLHttpRequest();
-      x.open( "GET",'http://www.github.com/'+this.props.data.full_name+'/archive/master.zip', true);
-      x.responseType="blob";
-      console.log(this.props.data.name)
-      x.onload= function(e){download(e.target.response,"master.zip", "application/octet-stream");};
-      x.send();
-    }
-
-  
+  downloadFile = () =>{
+    setTimeout(() => {
+      const response = {
+        file: 'http://www.github.com/'+this.props.data.full_name+'/archive/master.zip',
+      };
+      // server sent the url to the file!
+      // now, let's download:
+      window.location.href = response.file;
+    });
+  }
 
   render() {
-    //let downloadUrl = 'http://github.com/'+this.props.data.full_name+'/archive/master.zip';
+
     let htmlDownload = this.props.data.html_url;
     return (
         <tr>
