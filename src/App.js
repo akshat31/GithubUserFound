@@ -16,6 +16,7 @@ class App extends Component {
         showTable:false,
     }
 
+
     getDetail = async (e) =>{
         const currentComp = this;
         e.preventDefault();
@@ -59,22 +60,39 @@ class App extends Component {
                 <br/>
                 <br/>
             </div>
-            <div className="col-lg-4 offset-lg-4">
+            
+            <div className="col-lg-4">
                 { this.state.showTable && this.getImage() }
             </div>
-            <div className="col-md-12">
-            { this.state.imgError && this.errorimg() }
-                <table className="table table-striped table-bordered">
-                    <thead className="thead-dark">
-                        { this.state.showTable && <TableHead/> }
-                    </thead>        
-                    <tbody>
-                        {this.state.dataSet && this.state.dataSet.map((row) => <UserDetail  
-                       key= {row.id} data = {row}/>)}
-                    </tbody>
-                </table>
+            <div className="col-lg-4">
+               { 
+                    this.state.dataSet && this.state.showTable && 
+                    // <table className="table">
+                    //     <tbody>
+                    //     <tr>
+                    //         <td>User Name</td>
+                    //         <td>{ this.state.dataSet[0].owner.login}</td>
+                    //     </tr>
+                    //     </tbody>
+                    // </table>
+                    <h1>User Name :-<b>{ this.state.dataSet[0].owner.login}</b></h1>
+                }
             </div>
-         </div>
+            </div>
+            <div className="row mt-5">
+                <div className="col-md-12">
+                { this.state.imgError && this.errorimg() }
+                    <table className="table table-striped table-bordered table-light">
+                        <thead className="thead-dark">
+                            { this.state.showTable && <TableHead/> }
+                        </thead>        
+                        <tbody>
+                            {this.state.dataSet && this.state.dataSet.map((row) => <UserDetail  
+                        key= {row.id} data = {row}/>)}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
   }

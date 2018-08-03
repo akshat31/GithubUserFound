@@ -6,7 +6,7 @@ class UserImage extends Component {
   render() {
     return (
         <div>
-            <img src={this.props.userIMG} width="50%" className='img-thumbnail' alt="profile pic"/>
+            <img src={this.props.userIMG} width="70%" className='img-thumbnail float-right' alt="profile pic"/>
         </div>
     );
   }
