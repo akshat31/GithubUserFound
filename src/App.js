@@ -9,6 +9,7 @@ import UserDetail from "./component/UserDetail";
 import TableHead from "./component/tableHead";
 import UserImage from './component/UserImage';
 
+
 class App extends Component {
 
     state ={
@@ -16,7 +17,7 @@ class App extends Component {
         dataSet:[],
         showTable:false,
         currentPage: 1,
-        reposPerPage: 10
+        reposPerPage: 5
     }
 
 
@@ -61,30 +62,27 @@ class App extends Component {
     render() {
 
         const { dataSet , currentPage, reposPerPage } = this.state;
-
         // Logic for displaying current repos
         const indexOfLastTodo = currentPage * reposPerPage;
         const indexOfFirstTodo = indexOfLastTodo - reposPerPage;
         const currentTodos = dataSet.slice(indexOfFirstTodo, indexOfLastTodo);
-
         // Logic for displaying page numbers
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(dataSet.length / reposPerPage); i++) {
-          pageNumbers.push(i);
+            pageNumbers.push(i);
         }
-
         const renderPageNumbers = pageNumbers.map(number => {
             return (
-              <li
+                <li
                 className="page-item"
                 key={number}
-              >
-              <a className="page-link" onClick={this.handleClick} id={number}>
-              {number}
-              </a>
-              </li>
+                >
+                <a className="page-link" onClick={this.handleClick} id={number}>
+                {number}
+                </a>
+                </li>
             );
-          });
+            });
 
     return (
         <div className="container mt-5">
